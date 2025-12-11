@@ -5,7 +5,7 @@ This is a Next.js application. It uses Material-UI for the UI, Zustand for state
 
 -   Admin login with authentication.
 -   Protected dashboard, user, and product routes.
--   A list of users with pagination and search.
+-   A list of users with pagination and search, displayed in a responsive table or card UI depending on screen size.
 -   A detailed view for a single user.
 -   A list of products with pagination, search, and category filtering.
 -   A detailed view for a single product with an image carousel.

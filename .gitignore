@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+
+# Environment variables (Sensitive passwords/keys)
+.env.local
+.env
+
+# System files
+.DS_Store
+Thumbs.db

@@ -51,10 +51,10 @@ Zustand was chosen for state management in this project for several reasons:
 
 ## Client-Side Caching
 
-This application implements a simple client-side caching strategy within the Zustand stores.
+This application implements an in-memory client-side caching strategy within the Zustand stores to optimize performance and reduce API calls.
 
--   **Why caching is useful:** Caching is useful to avoid redundant API calls for data that has been recently fetched. This improves the user experience by making the application feel faster and reduces the load on the server.
--   **Caching Strategy:** The stores can be improved to check if the data is already present before making an API call. For example, the `fetchUsers` action could be modified to only fetch users if the `users` array in the store is empty. For this project, a simple in-memory cache is used where data is fetched on component mount, but a more advanced strategy could involve timestamps to invalidate the cache after a certain period. The `authStore` uses the `persist` middleware to cache the authentication token to `localStorage`, so the user remains logged in even after a page refresh.
+-   **Why caching is useful:** Caching is crucial for improving user experience by reducing load times and making the application feel snappier. It minimizes redundant network requests for data that has been recently fetched or is unlikely to change frequently, thereby reducing server load and bandwidth usage.
+-   **Caching Strategy:** A time-based in-memory cache is used within the Zustand `userStore` and `productStore`. Fetched data (such as user lists, search results, product lists, product categories, and individual user/product details) is stored in the store's `cache` property along with a timestamp. When a new request for the same data is made, the store first checks if a valid (not expired) entry exists in the cache. If it does, the cached data is immediately returned, avoiding an API call. Data is considered expired after `CACHE_DURATION` (e.g., 5 minutes). This approach balances data freshness with performance benefits. The `authStore` continues to use Zustand's `persist` middleware to store the authentication token in `localStorage`, ensuring user login persistence across sessions.
 
 ## Performance Optimization
 

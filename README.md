@@ -1,6 +1,6 @@
-# Gemini Assessment App
 
-This is a Next.js application built for the Gemini assessment. It uses Material-UI for the UI, Zustand for state management, and NextAuth for authentication. The backend data is fetched from the public API at `https://dummyjson.com/`.
+
+This is a Next.js application. It uses Material-UI for the UI, Zustand for state management, and NextAuth for authentication. The backend data is fetched from the public API at `https://dummyjson.com/`.
 
 ## Features
 

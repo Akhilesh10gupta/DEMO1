@@ -75,6 +75,7 @@ const UsersPage = () => {
             <TableHead sx={{ bgcolor: 'primary.main' }}>
               <TableRow>
                 <TableCell sx={{ color: 'common.white' }}>Name</TableCell>
+                <TableCell sx={{ color: 'common.white' }}>Email</TableCell>
                 <TableCell sx={{ color: 'common.white' }}>Gender</TableCell>
                 <TableCell sx={{ color: 'common.white' }}>Phone</TableCell>
                 <TableCell sx={{ color: 'common.white' }}>Company</TableCell>

@@ -32,11 +32,11 @@ const UserRow = React.memo(({ user }: UserRowProps) => {
       <TableCell>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Avatar src={user.image} sx={{ mr: 2 }} />
-          <Box>
-            <Typography variant="body1">{`${user.firstName} ${user.lastName}`}</Typography>
-            <Typography variant="body2" color="text.secondary">{user.email}</Typography>
-          </Box>
+          <Typography variant="body1">{`${user.firstName} ${user.lastName}`}</Typography>
         </Box>
+      </TableCell>
+      <TableCell>
+        <Typography variant="body2" color="text.secondary">{user.email}</Typography>
       </TableCell>
       <TableCell>{user.gender}</TableCell>
       <TableCell sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 120 }}>{user.phone}</TableCell>

@@ -17,9 +17,13 @@ import {
   Box,
   CircularProgress,
   Alert,
-  Button, // Ensure Button is imported
+  Button,
+  useTheme, // Added useTheme
+  useMediaQuery, // Added useMediaQuery
+  Grid, // Ensure Grid is imported for card view
 } from '@mui/material';
 import UserRow from '@/components/UserRow/UserRow';
+import UserCard from '@/components/UserCard/UserCard'; // New import
 import Link from 'next/link';
 
 const UsersPage = () => {
@@ -27,6 +31,9 @@ const UsersPage = () => {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const rowsPerPage = 10;
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     if (searchTerm) {
@@ -70,25 +77,35 @@ const UsersPage = () => {
       {error && <Alert severity="error">{error}</Alert>}
       
       {!loading && !error && (
-        <TableContainer component={Paper} elevation={3}>
-          <Table>
-            <TableHead sx={{ bgcolor: 'primary.main' }}>
-              <TableRow>
-                <TableCell sx={{ color: 'common.white' }}>Name</TableCell>
-                <TableCell sx={{ color: 'common.white' }}>Email</TableCell>
-                <TableCell sx={{ color: 'common.white' }}>Gender</TableCell>
-                <TableCell sx={{ color: 'common.white' }}>Phone</TableCell>
-                <TableCell sx={{ color: 'common.white' }}>Company</TableCell>
-                <TableCell sx={{ color: 'common.white' }}>Details</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {users.map((user) => (
-                <UserRow key={user.id} user={user} />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        isMobile ? (
+          <Grid container spacing={2}>
+            {users.map((user) => (
+              <Grid item xs={12} sm={6} key={user.id}>
+                <UserCard user={user} />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <TableContainer component={Paper} elevation={3}>
+            <Table>
+              <TableHead sx={{ bgcolor: 'primary.main' }}>
+                <TableRow>
+                  <TableCell sx={{ color: 'common.white' }}>Name</TableCell>
+                  <TableCell sx={{ color: 'common.white' }}>Email</TableCell>
+                  <TableCell sx={{ color: 'common.white' }}>Gender</TableCell>
+                  <TableCell sx={{ color: 'common.white' }}>Phone</TableCell>
+                  <TableCell sx={{ color: 'common.white' }}>Company</TableCell>
+                  <TableCell sx={{ color: 'common.white' }}>Details</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {users.map((user) => (
+                  <UserRow key={user.id} user={user} />
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )
       )}
 
       <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>

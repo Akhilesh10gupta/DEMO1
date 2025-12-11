@@ -1,3 +1,8 @@
+// Zustand was chosen for state management due to its simplicity, small footprint,
+// and built-in capabilities for handling asynchronous actions. It's often preferred
+// over more complex solutions like Redux for small to medium-sized applications
+// where a lightweight and intuitive state management solution is desired.
+
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from 'axios';

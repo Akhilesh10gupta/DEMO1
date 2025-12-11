@@ -68,19 +68,17 @@ const Header = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar disableGutters>
           {showBackButton && (
-            <IconButton
-              color="inherit"
-              aria-label="back to dashboard"
-              onClick={() => router.push('/dashboard')}
-              edge="start"
-              sx={{ mr: 2 }}
-            >
-              <ArrowBackIcon />
+                          <IconButton
+                            color="inherit"
+                            aria-label="back to dashboard"
+                            onClick={() => router.push('/dashboard')}
+                            edge="start"
+                          >              <ArrowBackIcon />
             </IconButton>
           )}
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, minWidth: 0, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
             {getPageTitle()}
           </Typography>
 
@@ -92,7 +90,6 @@ const Header = ({ children }: { children: React.ReactNode }) => {
                 color="inherit"
                 aria-label="menu"
                 onClick={handleMenu}
-                sx={{ mr: 2 }}
               >
                 <MenuIcon />
               </IconButton>
@@ -111,6 +108,11 @@ const Header = ({ children }: { children: React.ReactNode }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
+                {session?.user?.name || session?.user?.email ? (
+                  <MenuItem disabled>
+                    Welcome, {session.user.name || session.user.email}!
+                  </MenuItem>
+                ) : null}
                 {menuItems.map((item) => (
                   <MenuItem key={item.path} onClick={handleClose} component={Link} href={item.path}>
                     {item.text}

@@ -46,7 +46,7 @@ const ProductCard = React.memo(({ product }: ProductCardProps) => {
           alt={product.title}
         />
         <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h6" component="h2" noWrap>
+          <Typography gutterBottom variant="h6" component="h2">
             {product.title}
           </Typography>
           <Typography variant="h5" color="primary" sx={{ mb: 1 }}>
